@@ -11,6 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "chai": "^4.3.7",
     "hardhat": "^2.13.1"
   }
 }

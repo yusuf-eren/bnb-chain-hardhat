@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 
 contract Counter {
     uint256 public total;
@@ -9,7 +8,7 @@ contract Counter {
     uint256 public divided;
 
     function add(uint256 a, uint256 b) public {
-        require(a + b >= total, "Overflow detected");
+        require(2 ** 256 - 1 - a > b, "Overflow detected");
         total = a + b;
     }
 
@@ -24,11 +23,16 @@ contract Counter {
     }
 
     function divide(uint256 a, uint256 b) public {
-        require(b != 0, "Cannot divide by zero");
+        require(b != 0, "Division by zero");
         divided = a / b;
+        require(divided * b == a, "Division overflow");
     }
 
-    function getValues() public view returns (uint256, uint256, uint256, uint256) {
+    function getValues()
+        public
+        view
+        returns (uint256, uint256, uint256, uint256)
+    {
         return (total, subtracted, multiplied, divided);
     }
 }
